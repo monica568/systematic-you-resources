@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your AI Setup Guide | Systematic You</title>
+
+  <!-- Open Graph / WhatsApp / iMessage preview -->
+  <meta property="og:title" content="Your AI Setup Guide">
+  <meta property="og:description" content="Set up a working AI operations system in 30 minutes. From our AI workshop at Mashup Atlanta, April 2026.">
+  <meta property="og:image" content="https://systematicyou.ai/mashup-april-2026/assets/og-image.png">
+  <meta property="og:url" content="https://systematicyou.ai/mashup-april-2026/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Systematic You">
+
+  <!-- Twitter/X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your AI Setup Guide">
+  <meta name="twitter:description" content="Set up a working AI operations system in 30 minutes. From our AI workshop at Mashup Atlanta, April 2026.">
+  <meta name="twitter:image" content="https://systematicyou.ai/mashup-april-2026/assets/og-image.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -416,8 +431,24 @@
       .step-icon { width: 40px; height: 40px; }
       .step-title { font-size: 1.2em; }
 
-      .template-panel { padding: 16px; }
+      .template-panel { padding: 16px; padding-top: 90px; }
       .template-panel pre { font-size: 0.75em; }
+
+      .template-actions {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        justify-content: flex-end;
+      }
+
+      .template-btn {
+        padding: 8px 12px;
+        font-size: 0.8em;
+      }
 
       .pull-quote {
         padding: 20px 24px;
