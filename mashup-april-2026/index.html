@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your AI Setup Guide | Systematic You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --off-white: #FBF6F3;
+      --teal: #224E5A;
+      --caramel: #996D51;
+      --pastel-teal: #D4E4E8;
+      --blush: #F2E2DE;
+      --near-black: #2C2B27;
+      --light-pink: #F6ECE9;
+      --tan: #D5BCA7;
+      --plum: #886175;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--off-white);
+      color: var(--near-black);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .page-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* B1: HEADER */
+    .site-header {
+      padding: 40px 0 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--tan);
+      margin-bottom: 48px;
+    }
+
+    .site-header .logo {
+      width: 220px;
+      margin-bottom: 32px;
+    }
+
+    .site-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4em;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .site-header .subtitle {
+      font-size: 0.95em;
+      color: var(--caramel);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .site-header .byline {
+      font-size: 0.85em;
+      color: var(--plum);
+      font-weight: 400;
+    }
+
+    .header-cta {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 28px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .header-cta:hover { background: #1a3d47; }
+
+    /* B2: CONTEXT */
+    .context {
+      margin-bottom: 48px;
+    }
+
+    .context p {
+      margin-bottom: 16px;
+    }
+
+    .context .turn {
+      font-weight: 600;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 48px;
+      padding: 20px;
+      background: var(--pastel-teal);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .progress-step {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      padding: 10px 6px;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.72em;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1.3;
+    }
+
+    .progress-step .step-num {
+      display: block;
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .progress-step .step-time {
+      display: block;
+      font-size: 0.9em;
+      font-weight: 400;
+      color: var(--caramel);
+      margin-top: 3px;
+    }
+
+    .total-time {
+      text-align: center;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: var(--teal);
+      margin-top: -38px;
+      margin-bottom: 48px;
+    }
+
+    /* STEP CARDS */
+    .step-card {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #e8e0db;
+    }
+
+    .step-card:last-of-type {
+      border-bottom: none;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1.3;
+    }
+
+    .time-badge {
+      display: inline-block;
+      background: var(--pastel-teal);
+      color: var(--teal);
+      font-size: 0.75em;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    .step-card p {
+      margin-bottom: 14px;
+    }
+
+    .step-card strong {
+      color: var(--teal);
+    }
+
+    .step-card ul {
+      margin: 14px 0;
+      padding-left: 20px;
+    }
+
+    .step-card li {
+      margin-bottom: 8px;
+    }
+
+    /* CODE TEMPLATE */
+    .template-panel {
+      position: relative;
+      background: var(--pastel-teal);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 24px 0;
+      border: 1px solid #b8d4da;
+    }
+
+    .template-panel pre {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.82em;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: var(--near-black);
+    }
+
+    .template-panel .bracket {
+      color: var(--caramel);
+      font-weight: 500;
+    }
+
+    .template-actions {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .template-btn {
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-size: 0.75em;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .template-btn:hover { background: #1a3d47; }
+    .template-btn.copied { background: var(--caramel); }
+
+    .template-note {
+      margin-top: 20px;
+      font-size: 0.95em;
+      line-height: 1.7;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      background: var(--blush);
+      border-left: 4px solid var(--caramel);
+      border-radius: 0 10px 10px 0;
+      padding: 28px 32px;
+      margin: 48px 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15em;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--near-black);
+    }
+
+    /* REFLECTION SECTIONS */
+    .reflection {
+      margin-bottom: 48px;
+    }
+
+    .reflection h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .reflection p {
+      margin-bottom: 14px;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      position: relative;
+      background: white;
+      border: 2px solid var(--pastel-teal);
+      border-radius: 12px;
+      padding: 52px 32px 36px;
+      text-align: center;
+      margin: 72px 0 48px;
+    }
+
+    .cta-icon-wrapper {
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 72px;
+      background: white;
+      border: 2px solid var(--pastel-teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-icon {
+      width: 42px;
+      height: 42px;
+    }
+
+    .cta-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .cta-date {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15em;
+      font-weight: 600;
+      color: var(--teal);
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 600;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .cta-button:hover { background: #1a3d47; }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--tan);
+      padding: 36px 0 48px;
+      text-align: center;
+      font-size: 0.85em;
+      color: var(--plum);
+      line-height: 1.8;
+    }
+
+    .site-footer .footer-name {
+      font-weight: 600;
+      color: var(--near-black);
+    }
+
+    .site-footer .footer-tagline {
+      font-style: italic;
+      margin: 4px 0 12px;
+    }
+
+    .site-footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover { text-decoration: underline; }
+
+    .site-footer .copyright {
+      margin-top: 16px;
+      font-size: 0.85em;
+      color: var(--tan);
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+
+      .site-header h1 { font-size: 1.8em; }
+      .site-header .logo { width: 180px; }
+
+      .progress-bar {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .progress-step {
+        flex: 0 0 calc(33.33% - 4px);
+        font-size: 0.68em;
+      }
+
+      .step-icon { width: 40px; height: 40px; }
+      .step-title { font-size: 1.2em; }
+
+      .template-panel { padding: 16px; }
+      .template-panel pre { font-size: 0.75em; }
+
+      .pull-quote {
+        padding: 20px 24px;
+        font-size: 1.05em;
+      }
+
+      .cta-section { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- B1: HEADER -->
+  <header class="site-header">
+    <img src="assets/systematic-you-primary-logotype-inkwell-blue-rgb-1080px-w-72ppi.png" alt="Systematic You" class="logo">
+    <h1>Your AI Setup Guide</h1>
+    <p class="subtitle">From our AI workshop at Mashup Atlanta, April 2026</p>
+    <p class="byline">By Monica Rysavy, Founder of Systematic You</p>
+    <a href="#step1" class="header-cta">Start Building</a>
+  </header>
+
+  <!-- B2: CONTEXT -->
+  <section class="context">
+    <p>During our session, someone asked: "What is a resource I can go to that says set it up like this?" And I said I'd make one.</p>
+    <p><span class="turn">This is it.</span></p>
+    <p>This guide gets you from "I know I need to go in and do it" to a working system that knows who you are, how you work, and what matters to your business. Thirty minutes. Your laptop. No code.</p>
+  </section>
+
+  <!-- B3: THE ASSET -->
+
+  <!-- Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress-step">
+      <span class="step-num">1</span>
+      Install
+      <span class="step-time">5 min</span>
+    </div>
+    <div class="progress-step">
+      <span class="step-num">2</span>
+      Folder
+      <span class="step-time">2 min</span>
+    </div>
+    <div class="progress-step">
+      <span class="step-num">3</span>
+      Operating Manual
+      <span class="step-time">15 min</span>
+    </div>
+    <div class="progress-step">
+      <span class="step-num">4</span>
+      First Conversation
+      <span class="step-time">5 min</span>
+    </div>
+    <div class="progress-step">
+      <span class="step-num">5</span>
+      Real Document
+      <span class="step-time">3 min</span>
+    </div>
+  </div>
+  <p class="total-time">Total: ~30 minutes</p>
+
+  <!-- Step 1 -->
+  <article class="step-card" id="step1">
+    <div class="step-header">
+      <img src="assets/icons/systematic-you-plain-laptop-inkwell-blue-rgb.svg" alt="" class="step-icon">
+      <span class="step-title">Step 1: Install the tools <span class="time-badge">5 minutes</span></span>
+    </div>
+    <p><strong>VS Code</strong> is a free code editor. You're not writing code. You're using it as the container for your AI system. Download it at <a href="https://code.visualstudio.com" style="color: var(--teal);">code.visualstudio.com</a> and open it.</p>
+    <p><strong>Claude Code</strong> is the extension that puts Claude inside VS Code. Open VS Code, click the Extensions icon on the left sidebar (it looks like four squares), search "Claude," and install the one from Anthropic. Sign in with your Claude account.</p>
+    <p>That's it. Two installs. You now have an AI that can read files, write files, and work inside a project folder on your computer.</p>
+  </article>
+
+  <!-- Step 2 -->
+  <article class="step-card">
+    <div class="step-header">
+      <img src="assets/icons/systematic-you-key-in-lock-inkwell-blue-rgb.svg" alt="" class="step-icon">
+      <span class="step-title">Step 2: Create your system folder <span class="time-badge">2 minutes</span></span>
+    </div>
+    <p>Create a new folder on your computer. Name it something real: <code style="background: var(--pastel-teal); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.9em;">my-business-system</code>, <code style="background: var(--pastel-teal); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.9em;">[your company name]-ops</code>, whatever makes sense to you.</p>
+    <p>Open that folder in VS Code (File > Open Folder).</p>
+    <p><strong>This folder is your AI's world.</strong> Everything inside it is visible to your AI. Everything outside it is invisible. That's your security boundary. No client data leaks. No personal files get read. Only what you put in this folder.</p>
+  </article>
+
+  <!-- Step 3 -->
+  <article class="step-card">
+    <div class="step-header">
+      <img src="assets/icons/systematic-you-documents-inkwell-blue-rgb.svg" alt="" class="step-icon">
+      <span class="step-title">Step 3: Write your operating manual <span class="time-badge">15 minutes</span></span>
+    </div>
+    <p>This is where it gets good.</p>
+    <p>Inside your folder, create a new file called <code style="background: var(--pastel-teal); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.9em;">CLAUDE.md</code>. This is your operating manual. It tells your AI who you are, who it is, how you work, and what the rules are. Without this file, every conversation starts from zero. With it, every conversation starts from context.</p>
+    <p>Here's a starter. Copy this into your CLAUDE.md and replace the brackets with your real information:</p>
+
+    <div class="template-panel">
+      <div class="template-actions">
+        <button class="template-btn" onclick="downloadTemplate()">Download .md</button>
+        <button class="template-btn" onclick="copyTemplate(this)">Copy</button>
+      </div>
+      <pre id="template-code"># You Are [Name for Your AI]
+[Your name]'s operations assistant.
+
+## About Me
+
+**Name:** [Your name]
+**Business:** [What you do, in one sentence]
+**Role for this AI:** Help me [the top 2-3 things you want
+it to do: triage my inbox, prep for meetings, draft
+follow-ups, organize projects]
+
+## How I Work
+
+- I prefer [bullet points / paragraphs / tables / short
+  answers]
+- My communication style is [direct / detailed / casual /
+  formal]
+- When I ask for a draft, [give me options / give me one
+  strong version / ask me clarifying questions first]
+- [How does your brain actually work? ADHD? Need short
+  chunks? Hate walls of text? Process better with visuals?
+  Say so here. The system should fit your brain, not the
+  other way around.]
+
+## My Business Context
+
+**Clients/customers:** [Who you serve]
+**Team:** [Just you? 2 people? 15? Name them if helpful]
+**Tools we use:** [Slack, ClickUp, Google Workspace,
+whatever]
+**Current priorities:** [What matters most right now,
+2-3 bullets]
+
+## Rules
+
+- Never send anything to anyone without my approval
+- Never make commitments on my behalf
+- [Add your own rules as you discover them. Every time
+  it does something you don't want, add a rule. The file
+  grows with you.]</pre>
+    </div>
+
+    <p class="template-note">I designed this template based on 20 years of researching how people actually adopt new systems. The reason most AI setups get abandoned within three weeks isn't the technology. It's that nobody designed the system for how that specific person thinks and works. This file is the fix. It's small now (mine is around 800 lines, but it started at about 15, same as yours). It gets there one correction at a time.</p>
+  </article>
+
+  <!-- Step 4 -->
+  <article class="step-card">
+    <div class="step-header">
+      <img src="assets/icons/systematic-you-typewriter-inkwell-blue-rgb.svg" alt="" class="step-icon">
+      <span class="step-title">Step 4: Have your first real conversation <span class="time-badge">5 minutes</span></span>
+    </div>
+    <p>Open VS Code if it's not already open. Open your system folder (File > Open Folder, select the folder you created in Step 2). Now open the Claude Code panel (click the Claude icon in the left sidebar). That's it. Claude Code sees everything in that folder, including your CLAUDE.md. No extra configuration.</p>
+    <p>Type something you'd normally do manually:</p>
+    <ul>
+      <li>"What's on my plate this week?" (if you added your priorities)</li>
+      <li>"Draft a follow-up email to [client] about [topic]"</li>
+      <li>"I have a meeting with [person] tomorrow. What should I prep?"</li>
+    </ul>
+    <p>Watch what happens. It reads your CLAUDE.md first. It knows your business. It knows your preferences. It responds like someone who's been briefed, not like a stranger.</p>
+    <p>That moment, when it answers like it actually knows you? That's the shift. That's what separates a chat window from a system.</p>
+  </article>
+
+  <!-- Step 5 -->
+  <article class="step-card">
+    <div class="step-header">
+      <img src="assets/icons/systematic-you-book-stack-inkwell-blue-rgb.svg" alt="" class="step-icon">
+      <span class="step-title">Step 5: Add one real document <span class="time-badge">3 minutes</span></span>
+    </div>
+    <p>Drop one real business document into your folder. A client brief. A project plan. Your services page. Meeting notes from last week. (Not a test doc you made up for this exercise. Something that actually matters to your week.)</p>
+    <p>Now ask Claude about it. "Summarize the key action items from that meeting." "What questions would a prospect have after reading my services page?" "What's missing from this project plan?"</p>
+    <p>Your AI just went from knowing about your business to working with your actual materials.</p>
+  </article>
+
+  <!-- B4: PULL QUOTE -->
+  <blockquote class="pull-quote">
+    The reason most AI setups get abandoned within three weeks isn't the technology. It's that nobody designed the system for how that specific person thinks and works.
+  </blockquote>
+
+  <!-- What you built -->
+  <section class="reflection">
+    <h2>What you built (and what it changes)</h2>
+    <p>You now have a working AI system that lives in a secure folder on your computer, knows who you are and how you work, and can read and reference your real business documents.</p>
+    <p>Here's what that looks like in practice: you stop re-explaining yourself every session. You stop forgetting the follow-up from last Thursday. You start your morning with context instead of chaos. And when someone asks how you're staying on top of everything, you have an actual answer.</p>
+    <p>This is the foundation. Every AI operations system I build starts exactly here.</p>
+  </section>
+
+  <!-- What comes next -->
+  <section class="reflection">
+    <h2>What comes next (and where the ceiling is)</h2>
+    <p>What you built today is Level 2: memory. Your AI knows who you are. That's real, and it's more than most people ever get to.</p>
+    <p>Level 3 is where it gets powerful: skills (saved processes that run the same way every time) and tool connections (your calendar, email, CRM, project management wired in so your AI works inside your business, not just alongside it). Level 4 is a team of AI specialists working in parallel.</p>
+    <p>Those levels are also where it gets complex. The design decisions aren't obvious from the documentation. My operating manual took about a dozen rewrites to get right. I built a sub-agent with a 12-step process and it failed on the first real run (five separate bugs, deprecated it the same day). And getting a team of people with different comfort levels to actually use the system? That's an instructional design problem, not a technology problem.</p>
+    <p>Without the right design, here's what happens: you spend three months experimenting, hit the security wall and the complexity wall, and end up right where you started with a fancier chat window. Or worse, you roll it out to your team, they get no real training, and they quietly stop using it within two weeks.</p>
+    <p>You can absolutely keep building on your own. Every time you notice yourself re-explaining something, add it to the CLAUDE.md. Every time Claude does something you don't want, add a rule. The file grows with you, and you'll learn a lot in the process.</p>
+  </section>
+
+  <!-- B5: SOFT NEXT STEP -->
+  <div class="cta-section">
+    <div class="cta-icon-wrapper">
+      <img src="assets/icons/systematic-you-calendar-inkwell-blue-rgb.svg" alt="" class="cta-icon">
+    </div>
+    <h2 class="cta-heading">Live Setup Review</h2>
+    <p><strong>I'm hosting a live session for anyone who followed this guide.</strong> Bring your CLAUDE.md and your questions. I'll review setups live, show you what to add, and help you figure out where to take it next.</p>
+    <div class="cta-date">Tuesday, May 12 | 12:30 &ndash; 1:30 PM ET</div>
+    <a href="https://zoom.us/meeting/register/E6R4M41gReGW5FsWTnt10g" class="cta-button">RSVP for the Live Setup Review</a>
+  </div>
+
+  <!-- B6: FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-name">Monica Rysavy, Founder of Systematic You</p>
+    <p class="footer-tagline">We design, build, and train your team on AI operations systems.<br>So you get the advantage without the learning curve.</p>
+    <p><a href="https://systematicyou.com">systematicyou.com</a></p>
+    <p class="copyright">&copy; 2026 Systematic You LLC. All rights reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+function copyTemplate(btn) {
+  const code = document.getElementById('template-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function downloadTemplate() {
+  const code = document.getElementById('template-code').textContent;
+  const blob = new Blob([code], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'CLAUDE.md';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
