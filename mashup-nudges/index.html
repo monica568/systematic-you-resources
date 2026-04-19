@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Setup Nudges — Systematic You</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron-gate: #2C2B26;
+    --mahogany-desk: #412613;
+    --leather-bound: #9A6D51;
+    --aged-parchment: #D4BBA8;
+    --inkwell-blue: #214E5A;
+    --french-toile: #92A8B1;
+    --garden-wall: #97A184;
+    --pressed-petal: #E9CEC8;
+    --parchment: #EAE2DD;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--parchment);
+    color: var(--iron-gate);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    letter-spacing: 0.03em;
+  }
+
+  .page-container {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(44, 43, 38, 0.08);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: var(--inkwell-blue);
+    padding: 32px 36px 28px;
+    color: #FFFFFF;
+  }
+
+  .brand-label {
+    font-family: 'Nitti Typewriter', 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--aged-parchment);
+    margin-bottom: 12px;
+  }
+
+  .card-header h1 {
+    font-family: 'Avantime', 'Playfair Display', Georgia, serif;
+    font-size: 26pt;
+    font-weight: normal;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .card-header p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 12pt;
+    font-style: italic;
+    color: var(--pressed-petal);
+    line-height: 1.45;
+  }
+
+  .card-body {
+    padding: 32px 36px 36px;
+  }
+
+  .card-body p {
+    font-size: 11.5pt;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .what-you-get {
+    background: var(--parchment);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 20px 0 24px;
+  }
+
+  .what-you-get-label {
+    font-family: 'Nitti Typewriter', 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--leather-bound);
+    margin-bottom: 10px;
+  }
+
+  .nudge-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .nudge-list li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: var(--iron-gate);
+  }
+
+  .nudge-list li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    background: var(--inkwell-blue);
+    border-radius: 50%;
+  }
+
+  .nudge-list li strong {
+    color: var(--mahogany-desk);
+    font-weight: 600;
+  }
+
+  /* ===== FORM ===== */
+  .signup-form {
+    margin-top: 24px;
+  }
+
+  .form-row {
+    margin-bottom: 14px;
+  }
+
+  .form-row label {
+    display: block;
+    font-family: 'Nitti Typewriter', 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--leather-bound);
+    margin-bottom: 6px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 12pt;
+    color: var(--iron-gate);
+    background: #FFFFFF;
+    border: 1px solid var(--aged-parchment);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-row input:focus {
+    border-color: var(--inkwell-blue);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px 24px;
+    margin-top: 8px;
+    font-family: 'Karoll', 'EB Garamond', Georgia, serif;
+    font-size: 11pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--inkwell-blue);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .submit-btn:hover {
+    background: var(--mahogany-desk);
+  }
+
+  .privacy-note {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 8.5pt;
+    color: var(--leather-bound);
+    font-style: italic;
+  }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 0;
+  }
+
+  .page-footer .sig-name {
+    font-family: 'Karoll', 'EB Garamond', Georgia, serif;
+    font-size: 9pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--leather-bound);
+  }
+
+  .page-footer .sig-tagline {
+    font-size: 8.5pt;
+    font-style: italic;
+    color: var(--leather-bound);
+    margin-top: 2px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 560px) {
+    body { padding: 20px 16px; }
+    .card-header { padding: 24px 24px 22px; }
+    .card-header h1 { font-size: 22pt; }
+    .card-body { padding: 24px 24px 28px; }
+    .what-you-get { padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-container">
+  <div class="card">
+    <div class="card-header">
+      <div class="brand-label">Systematic You</div>
+      <h1>Don't let the guide sit in your downloads folder</h1>
+      <p>4 short emails over 2 weeks to keep you building.</p>
+    </div>
+
+    <div class="card-body">
+      <p>You set it up. You got that first response where it actually knew your business. And now you're wondering whether you'll keep using it next week, or whether it'll be one more thing you tried and quietly stopped doing.</p>
+
+      <p>These emails are the nudge. Short prompts that keep you building instead of stalling.</p>
+
+      <div class="what-you-get">
+        <div class="what-you-get-label">What you'll get</div>
+        <ul class="nudge-list">
+          <li><strong>Day 3:</strong> Your first rule. (The one that makes it stop doing the annoying thing.)</li>
+          <li><strong>Day 7:</strong> A real-work challenge. Use your system for an actual task this week.</li>
+          <li><strong>Day 14:</strong> A check-in. How's your CLAUDE.md growing?</li>
+          <li><strong>Before the live session:</strong> What to bring on May 12.</li>
+        </ul>
+      </div>
+
+      <p>Four emails. That's it.</p>
+
+      <form class="signup-form" method="POST" id="_form_15_" novalidate data-styles-version="5">
+        <input type="hidden" name="u" value="15" />
+        <input type="hidden" name="f" value="15" />
+        <input type="hidden" name="s" />
+        <input type="hidden" name="c" value="0" />
+        <input type="hidden" name="m" value="0" />
+        <input type="hidden" name="act" value="sub" />
+        <input type="hidden" name="v" value="2" />
+        <input type="hidden" name="or" value="c3acbcf6-4158-459c-82ec-abb14c837e7d" />
+        <div class="form-row">
+          <label for="fullname">First name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Your first name" />
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <button type="submit" id="_form_15_submit" class="submit-btn">Send me the nudges</button>
+        <div class="_form-thank-you" style="display:none;text-align:center;padding:20px 0;font-size:12pt;color:var(--inkwell-blue);font-style:italic;"></div>
+      </form>
+
+      <p class="privacy-note">Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="sig-name">Monica Rysavy</div>
+    <div class="sig-tagline">Founder, Systematic You</div>
+  </div>
+</div>
+
+<script>
+window.cfields = [];
+window._show_thank_you = function(id, message, trackcmp_url, email) {
+    var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
+    form.querySelector('.form-row').style.display = 'none';
+    form.querySelectorAll('.form-row').forEach(function(el) { el.style.display = 'none'; });
+    form.querySelector('.submit-btn').style.display = 'none';
+    thank_you.innerHTML = message || "You're in! Check your inbox in a few days.";
+    thank_you.style.display = 'block';
+    var privacyNote = document.querySelector('.privacy-note');
+    if (privacyNote) privacyNote.style.display = 'none';
+    const vgoAlias = typeof visitorGlobalObjectAlias === 'undefined' ? 'vgo' : visitorGlobalObjectAlias;
+    var visitorObject = window[vgoAlias];
+    if (email && typeof visitorObject !== 'undefined') {
+        visitorObject('setEmail', email);
+        visitorObject('update');
+    } else if (typeof(trackcmp_url) != 'undefined' && trackcmp_url) {
+        _load_script(trackcmp_url);
+    }
+    if (typeof window._form_callback !== 'undefined') window._form_callback(id);
+};
+window._show_error = function(id, message) {
+    var form = document.getElementById('_form_' + id + '_'),
+        button = form.querySelector('button[type="submit"]'),
+        old_error = form.querySelector('._form_error');
+    if (old_error) old_error.parentNode.removeChild(old_error);
+    var err = document.createElement('div');
+    err.innerHTML = message;
+    err.className = '_form_error';
+    err.style.cssText = 'color:#c00;font-size:10pt;margin-top:8px;text-align:center;';
+    button.parentNode.insertBefore(err, button.nextSibling);
+    button.disabled = false;
+    button.classList.remove('processing');
+    button.textContent = 'Send me the nudges';
+};
+window._load_script = function(url, callback, isSubmit) {
+    var head = document.querySelector('head'), script = document.createElement('script'), r = false;
+    script.charset = 'utf-8';
+    script.src = url;
+    if (callback) {
+        script.onload = script.onreadystatechange = function() {
+            if (!r && (!this.readyState || this.readyState == 'complete')) {
+                r = true;
+                callback();
+            }
+        };
+    }
+    script.onerror = function() {
+        if (isSubmit) {
+            _show_error("15", "Sorry, something went wrong. Please try again.");
+        }
+    }
+    head.appendChild(script);
+};
+(function() {
+    var form_to_submit = document.getElementById('_form_15_');
+    var _form_serialize = function(form){if(!form||form.nodeName!=="FORM"){return }var i,j,q=[];for(i=0;i<form.elements.length;i++){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=0;j<form.elements[i].options.length;j++){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break}};return q.join("&")};
+
+    form_to_submit.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = form_to_submit.querySelector('input[name="email"]');
+        if (!email.value || !email.value.match(/^[\+_a-z0-9-'&=]+(\.[\+_a-z0-9-']+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i)) {
+            _show_error("15", "Please enter a valid email address.");
+            return false;
+        }
+        var submitButton = form_to_submit.querySelector('#_form_15_submit');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        var serialized = _form_serialize(form_to_submit).replace(/%0A/g, '\\n');
+        _load_script('https://monicarysavy.activehosted.com/proc.php?' + serialized + '&jsonp=true', null, true);
+        return false;
+    });
+})();
+</script>
+</body>
+</html>
